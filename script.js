@@ -11,6 +11,7 @@ function remove_ (event){
     save();
 }
 
+
 function edit_ (event){
 let edited_list=event.target.parentElement
 const currentText = edited_list.childNodes[1].nodeValue.trim()
@@ -30,6 +31,7 @@ function checkbox_(event){
    save();
 }
 
+
 let todoList=[] ;
  let counter=0 ;
 
@@ -37,11 +39,6 @@ let todoList=[] ;
 function save() {
   if (todoList.length)
   localStorage.setItem("todos", JSON.stringify(todoList));
-
-
-
-//window.onload = function () {
-  
   let saved = localStorage.getItem("todos");
   if (saved) {
     todoList = JSON.parse(saved);
@@ -72,48 +69,19 @@ function save() {
 
       list.appendChild(new_li);
 
-      const idNum = parseInt(todo.id); //.replace("li", ""));
+      const idNum = parseInt(todo.id); 
       if (idNum >= counter) counter = idNum + 1;
     });
 }; }
 
 
-
 function add(){
     const text=input.value.trim()
     if (text==="") return;  
-
-    /*const new_li=document.createElement("li")
-    new_li.textContent=text
-    new_li.className="madde"
-    new_li.id = "li" + counter;
-   
-
-    const check_box= document.createElement("input")
-    check_box.type="checkbox"
-    check_box.addEventListener("click", checkbox_)
     
 
-    const edit_button=document.createElement("button")
-    edit_button.textContent="edit"
-    edit_button.id="edit_button"
-    edit_button.className="button"
-    edit_button.addEventListener("click", edit_)
-
-
-    const remove_button=document.createElement("button")
-    remove_button.textContent="remove"
-    remove_button.id="remove_button"
-    remove_button.className="button"
-    remove_button.addEventListener("click", remove_)
-  
-    new_li.prepend(check_box)
-    new_li.appendChild(remove_button)
-    new_li.appendChild(edit_button)
-    list.appendChild(new_li); */
-
-     let item= { //yalnız obje ouuşturup arraye göndermek
-  id: counter , //new_li.id ,
+     let item= { 
+  id: counter , 
   text_value : text ,
   completed: false
        }
@@ -122,12 +90,11 @@ function add(){
     todoList.push(item)
      counter+=1
      input.value = ""; 
-
       save();
-
   }
  
 add_button.addEventListener("click", add);
+
 
 completed_delete_button.addEventListener("click", function () {
   todoList.forEach(todo => {
@@ -137,9 +104,11 @@ completed_delete_button.addEventListener("click", function () {
     }
   });
 
+
   todoList = todoList.filter(todo => !todo.completed); 
   save();
 }); 
+
 window.onload= save;
 
 

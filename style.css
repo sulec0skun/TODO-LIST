@@ -1,0 +1,72 @@
+body {
+    background-color: #FFC7C4;
+}
+ .header {
+  background-color:#f44339 ;
+   margin-top: 60px;
+   margin-left: 500px;
+   margin-right: 500px;
+ text-align: center;
+ padding:  40px;
+ }
+
+  h1 {
+    color: rgb(255, 255, 255);
+  }
+
+   #input {
+ width: 450px;
+ height: 25px;
+  }
+
+  #add_button{
+    margin-top: 30px;
+    height: 40px ;
+    width: 60px;
+
+  }
+
+  #deletebutton {
+     text-align: center;
+  }
+
+  #list{
+text-align:left;
+list-style-position: inside;
+  margin-left: 500px;
+  margin-right: 500px;
+  padding-inline-start: 0px ;
+  }
+#remove_button {
+    margin-right: 3px ;
+    margin-left: 3px ;
+    border: 0px solid rgb(3, 3, 3);
+}
+.button {
+    background-color:white;
+} 
+.madde{
+  width: 510px;
+  background-color: white;
+}
+ #edit_button {
+    border: 0px solid rgb(3, 3, 3);
+  
+ }
+ #list li {
+  display: flex;
+  align-items: center;
+ }
+
+#list li .button {
+  margin-left: auto; 
+}
+
+#list li .button + .button {
+  margin-left: 5px; 
+}
+
+
+
+
+  

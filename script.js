@@ -1,14 +1,16 @@
 const input= document.getElementById("input")
 const add_button=document.getElementById("add_button")
-let list = document.getElementById("list");
+const list = document.getElementById("list");
 const completed_delete_button=document.getElementById("completed_delete_button")
+
 
 function remove_ (event){
  const li = event.target.parentElement;
   const idx = todoList.findIndex(item => item.id === li.id);
   if (idx > -1) todoList.splice(idx, 1);
   li.remove();
-    save();
+  save();
+  
 }
 
 
@@ -33,16 +35,24 @@ function checkbox_(event){
 
 
 let todoList=[] ;
- let counter=0 ;
+add_button.addEventListener("click", add);
+
+  completed_delete_button.addEventListener("click", function () {
+  todoList = todoList.filter(todo => !todo.completed);
+  save();
+  render();
+});
+
 
 
 function save() {
-  if (todoList.length)
-  localStorage.setItem("todos", JSON.stringify(todoList));
-  let saved = localStorage.getItem("todos");
+  localStorage.setItem("todos", JSON.stringify(todoList)); }
+
+function render(){
+  list.innerHTML = "";
+const saved= localStorage.getItem("todos")
   if (saved) {
     todoList = JSON.parse(saved);
-    list=document.createElement("ul")
     todoList.forEach(todo => {
       const new_li = document.createElement("li");
       new_li.textContent = todo.text_value;
@@ -69,50 +79,23 @@ function save() {
 
       list.appendChild(new_li);
 
-      const idNum = parseInt(todo.id); 
-      if (idNum >= counter) counter = idNum + 1;
-    });
-}; }
-
+    }); } }
 
 function add(){
-    const text=input.value.trim()
-    if (text==="") return;  
-    
 
-     let item= { 
-  id: counter , 
-  text_value : text ,
-  completed: false
-       }
-
-    
-    todoList.push(item)
-     counter+=1
-     input.value = ""; 
-      save();
-  }
+  const text=input.value.trim()
+  if (text==="") return;   
  
-add_button.addEventListener("click", add);
+  let item= { 
+  id: Date.now().toString() , 
+  text_value : text ,
+  completed: false 
+  }
 
-
-completed_delete_button.addEventListener("click", function () {
-  todoList.forEach(todo => {
-    if (todo.completed) {
-      const li_checked = document.getElementById(todo.id);
-      if (li_checked) li_checked.remove();
-    }
-  });
-
-
-  todoList = todoList.filter(todo => !todo.completed); 
+  todoList.push(item)
+  input.value = ""; 
   save();
-}); 
+  render();
+  }
 
-window.onload= save;
-
-
-
-
-
-
+window.onload= render;
